@@ -110,26 +110,29 @@ function Navbar({ darkMode, toggleDark }) {
                 className="p-2 rounded-lg text-muted hover:text-text hover:bg-white/5 transition-all focus:outline-none focus:ring-2 focus:ring-brand/50"
                 aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
               >
-                <motion.div
-                  key={darkMode ? 'moon' : 'sun'}
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-                </motion.div>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={darkMode ? 'sun' : 'moon'}
+                    initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+                  </motion.div>
+                </AnimatePresence>
               </button>
 
               <Button
                 variant="primary"
                 size="sm"
-                href="#"
+                href="/resume.pdf"
                 target="_blank"
+                rel="noopener noreferrer"
                 icon={<FileText size={14} />}
                 iconPosition="left"
                 className="hidden sm:inline-flex"
-                aria-label="Download resume"
+                aria-label="Preview resume in new tab"
               >
                 Resume
               </Button>
@@ -196,8 +199,17 @@ function Navbar({ darkMode, toggleDark }) {
                 transition={{ delay: 0.4 }}
                 className="pt-6"
               >
-                <Button variant="primary" size="lg" href="#" className="w-full justify-center" icon={<FileText size={16} />} iconPosition="left">
-                  Download Resume
+                <Button
+                  variant="primary"
+                  size="lg"
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full justify-center"
+                  icon={<FileText size={16} />}
+                  iconPosition="left"
+                >
+                  View Resume
                 </Button>
               </motion.div>
             </div>
@@ -228,7 +240,7 @@ function Footer() {
 
 export function RootLayout({ children, darkMode, toggleDark }) {
   return (
-    <div className="min-h-screen bg-bg text-text font-sans">
+    <div className="min-h-screen bg-bg text-text font-sans transition-colors duration-300">
       <Navbar darkMode={darkMode} toggleDark={toggleDark} />
       <main id="main-content" tabIndex={-1}>
         {children}
