@@ -1,0 +1,16 @@
+{
+  "name": "Elvin Hirwa — Backend Engineer",
+  "short_name": "Elvin Hirwa",
+  "description": "Backend engineer specializing in Laravel, Node.js, and scalable API architecture.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090B",
+  "theme_color": "#5B5BD6",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
